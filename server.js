@@ -16,7 +16,12 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ['https://bamroda.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
 
 // Create uploads folder if it doesn't exist
 if (!fs.existsSync("uploads")) {
